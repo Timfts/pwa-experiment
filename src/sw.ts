@@ -25,10 +25,17 @@ registerRoute(
 );
 
 self.addEventListener("message", (event) => {
-  if (event.data && event.data.action === "triggerSchedule") {
-    setTimeout(() => {
-      self.registration.showNotification("My new push", { body: "batata" });
+  if (!event.data && event.data.action === "triggerPush") return;
+
+  const triggerPush = () =>
+    self.registration.showNotification("My new push", { body: "batata" });
+  if (event.data.withSchedule) {
+    const t = setTimeout(() => {
+      triggerPush();
+      clearTimeout(t);
     }, 5000);
+  } else {
+    triggerPush();
   }
 });
 
