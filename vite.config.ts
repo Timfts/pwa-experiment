@@ -4,10 +4,11 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/pwa-experiment",
   plugins: [react(), VitePWA({
     strategies: 'injectManifest',
     srcDir: 'src',
-    base: '/pwa-experiment/',
+    
     filename: 'sw.ts',
     registerType: 'autoUpdate',
     injectRegister: false,
