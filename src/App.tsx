@@ -4,21 +4,14 @@ import "./App.css";
 
 function App() {
   function triggerPush() {
+    console.log("opa 1");
     navigator.serviceWorker.ready.then((reg) => {
+      console.log("opa 2");
       reg.showNotification("My new push", { body: "batata" });
     });
   }
 
-  function timer(time: number) {
-    return new Promise((res) => {
-      const t = setTimeout(() => {
-        clearTimeout(t);
-        res(undefined);
-      }, time);
-    });
-  }
-
-  async function handlePush(withTimer = false) {
+  async function handlePush() {
     const checkPermission = () => Notification.permission === "granted";
 
     if (!checkPermission()) {
@@ -26,15 +19,20 @@ function App() {
     }
 
     if (checkPermission()) {
-      if (withTimer) await timer(30000);
       triggerPush();
     }
   }
 
+  function handleTimer() {
+    navigator.serviceWorker.ready.then((reg) => {
+      reg.active?.postMessage({ action: "triggerSchedule" });
+    });
+  }
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-      <button onClick={() => handlePush()}>Trigger push</button>
-      <button onClick={() => handlePush(true)}> Trigger push with timer</button>
+      <button onClick={handlePush}>Trigger push</button>
+      <button onClick={handleTimer}> Trigger push with timer</button>
     </div>
   );
 }
