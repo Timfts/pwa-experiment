@@ -11,7 +11,7 @@ export default defineConfig({
     
     filename: 'sw.ts',
     registerType: 'autoUpdate',
-    injectRegister: false,
+    injectRegister: "inline",
 
     pwaAssets: {
       disabled: false,
