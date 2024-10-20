@@ -1,33 +1,31 @@
-/* import reactLogo from "./assets/react.svg"; */
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./pages/Home";
+import PageWithBoundary from "./pages/PageWithBoundary";
+import PageWithoutBoundary from "./pages/PageWithoutBoundary";
+import SimpleBoundary from "./components/SimpleBoundary";
 import "./App.css";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <SimpleBoundary />,
+  },
+  {
+    path: "/with-boundary",
+    element: <PageWithBoundary />,
+    /* errorElement: <SimpleBoundary />, */
+  },
+  {
+    path: "/without-boundary",
+    element: <PageWithoutBoundary />,
+  },
+]);
+
 function App() {
-  async function handlePush(withTimer = false) {
-    const checkPermission = () => Notification.permission === "granted";
-
-    if (!checkPermission()) {
-      await Notification.requestPermission();
-    }
-
-    if (checkPermission()) {
-      triggerPush(withTimer);
-    }
-  }
-
-  function triggerPush(withTimer = false) {
-    navigator.serviceWorker.ready.then((reg) => {
-      reg.active?.postMessage({
-        action: "triggerPush",
-        withSchedule: withTimer,
-      });
-    });
-  }
-
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-      <button onClick={() => handlePush()}>Trigger push</button>
-      <button onClick={() => handlePush(true)}> Trigger push with timer</button>
+    <div>
+      <RouterProvider router={router} />
     </div>
   );
 }
