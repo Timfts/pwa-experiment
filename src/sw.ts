@@ -27,8 +27,24 @@ registerRoute(
 self.addEventListener("message", (event) => {
   if (!event.data && event.data.action === "triggerPush") return;
 
-  const triggerPush = () =>
-    self.registration.showNotification("My new push", { body: "batata" });
+  const triggerPush = () => {
+    const icon = event.data.icon || "";
+    self.registration.showNotification("Alerta! - Redline X9", {
+      body: "Os alertas: evento crítico zerado e taxa de acordo em queda estão ativos",
+      icon,
+      badge: icon,
+      requireInteraction: true,
+      //@ts-ignore
+      actions: [
+        {
+          action: "something",
+          title: "potato",
+          icon: icon,
+        },
+      ],
+    });
+  };
+
   if (event.data.withSchedule) {
     const t = setTimeout(() => {
       triggerPush();
