@@ -19,8 +19,8 @@ export default defineConfig(({ mode }) => ({
       },
 
       manifest: {
-        name: "experiment-pwa",
-        short_name: "experiment-pwa",
+        name: "redline",
+        short_name: "Redline",
         description: "simple experiment with pwa's",
         theme_color: "#ffffff",
       },
