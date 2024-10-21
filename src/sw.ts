@@ -49,7 +49,7 @@ self.addEventListener("message", (event) => {
     const t = setTimeout(() => {
       triggerPush();
       clearTimeout(t);
-    }, 5000);
+    }, 10000);
   } else {
     triggerPush();
   }
