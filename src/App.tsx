@@ -1,11 +1,11 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+/* import { createBrowserRouter, RouterProvider } from "react-router-dom"; */
 import Home from "./pages/Home";
-import PageWithBoundary from "./pages/PageWithBoundary";
+/* import PageWithBoundary from "./pages/PageWithBoundary";
 import PageWithoutBoundary from "./pages/PageWithoutBoundary";
-import SimpleBoundary from "./components/SimpleBoundary";
+import SimpleBoundary from "./components/SimpleBoundary"; */
 import "./App.css";
 
-const router = createBrowserRouter([
+/* const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
@@ -14,18 +14,19 @@ const router = createBrowserRouter([
   {
     path: "/with-boundary",
     element: <PageWithBoundary />,
-    /* errorElement: <SimpleBoundary />, */
+    
   },
   {
     path: "/without-boundary",
     element: <PageWithoutBoundary />,
   },
-]);
+]); */
 
 function App() {
   return (
     <div>
-      <RouterProvider router={router} />
+      {/* <RouterProvider router={router} /> */}
+      <Home />
     </div>
   );
 }
